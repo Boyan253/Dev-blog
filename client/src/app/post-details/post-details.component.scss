@@ -1,0 +1,140 @@
+/* Container styles */
+.container {
+    max-width: 1000px;
+    /* Adjusted to 600px */
+
+    font-family: "Open Sans", Arial, sans-serif;
+
+    margin: 0 auto;
+    padding-left: 250px;
+    /* Adjusted padding for better responsiveness */
+    text-align: start;
+}
+
+/* Article styles */
+.article-post {
+    margin-bottom: 40px;
+}
+
+.article-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.article-title {
+    font-size: 24px;
+    /* Adjusted font-size for better readability */
+    font-weight: bold;
+    margin: 0;
+}
+
+.article-img {
+    max-width: 100%;
+    /* Adjusted max-width for better responsiveness */
+    height: auto;
+}
+
+.article-meta {
+    color: #888;
+    font-size: 14px;
+    text-align: start;
+}
+
+.meta-date,
+.meta-category {
+    margin-right: 10px;
+}
+
+/* Content styles */
+.article-content {
+    font-size: 16px;
+        line-height: 1.4;
+    color: #333;
+}
+
+/* Sidebar styles */
+.sidebar {
+    margin-top: 20px;
+}
+
+.widget {
+    margin-bottom: 20px;
+}
+
+.widget-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.widget-content {
+    font-size: 14px;
+    color: #888;
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+
+.tag-cloud li {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* Responsive styles */
+
+
+@media (max-width: 1280px) {
+    .container {
+        padding-left: 250px;
+        /* Adjusted padding for better spacing */
+        max-width: 700px;
+    }
+
+    .col-md-8,
+    .col-md-4 {
+        width: 100%;
+    }
+
+    .sidebar {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 1000px) {
+    .container {
+        padding-left: 0;
+        margin-top: 100px;
+        /* Adjusted padding for better spacing */
+        max-width: 800px;
+    }
+
+    .col-md-8,
+    .col-md-4 {
+        width: 100%;
+    }
+
+    .sidebar {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 800px) {
+    .container {
+        max-width: 600px;
+        padding: 0 15px;
+
+        /* Adjusted padding for better spacing */
+    }
+
+    .col-md-8,
+    .col-md-4 {
+        width: 100%;
+    }
+
+    .sidebar {
+        margin-top: 0;
+    }
+}

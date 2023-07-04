@@ -1,0 +1,103 @@
+.sub-form {
+    display: inline-flex;
+    width: 20em;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #292929;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #9c9c9c;
+    appearance: none;
+    border-radius: .375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .menu-section {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    background-color: #fafafa !important;
+    padding-left: 12em;
+    margin: 0;
+  }
+  
+  .sub-btn {
+    margin-top: 10px;
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    margin-left: 1em;
+    // width: 100%;
+    border-radius: .375rem;
+    background-color: #5FCB71;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: .375rem 1rem;
+    height: 2.75rem;
+    outline: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sub-btn:hover {
+    background-color: darkgreen;
+  }
+  
+  .sub-section h2 {
+    font-size: 2em;
+    left: 1rem;
+  }
+  
+  .content {
+    top: 0;
+    position: relative;
+  }
+  
+  .navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f8f8f8; /* Set your desired background color */
+    border-bottom: 1px solid #ddd; /* Add a border at the bottom */
+  }
+  
+  .navbar li {
+    float: left;
+  }
+  
+  .navbar li a {
+    display: block;
+    color: #333; /* Set the link color */
+    text-align: center;
+    padding: 15px 20px; /* Adjust the padding as per your preference */
+    text-decoration: none;
+  }
+  
+  .navbar li a:hover {
+    background-color: #ddd; /* Set the background color on hover */
+  }
+  
+  .navbar li.active a {
+    background-color: #555; /* Set the background color for the active link */
+    color: #fff; /* Set the text color for the active link */
+  }
+  
+  /* Media Queries */
+  @media screen and (max-width: 1000px) {
+    .sub-section {
+      padding-top: 5em;
+      text-align: center;
+      display: block;
+      // justify-content: space-between;
+      background-color: #fafafa !important;
+      padding-left: 0;
+      margin: 0;
+    }
+  }
+  

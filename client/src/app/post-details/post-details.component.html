@@ -1,0 +1,82 @@
+<div class="container" *ngIf="post">
+    <div class="row">
+        <div class="col-md-8 col-lg-8">
+            <article class="article-post">
+                <div class="article-header">
+                    <h1 class="article-title" *ngIf="post.title">{{post.title}}</h1>
+                    <img class="article-img" src={{post.image?.fields.file.url}} alt="">
+                    <div class="article-meta">
+                        <span class="meta-date"><i class="far fa-clock"></i> May 20, 2023</span>
+                        <span class="meta-category " *ngFor="let tag of tags"> <i class="far fa-folder"></i> {{tag?
+                            tag.sys.id : 'No tags'}}</span>
+                    </div>
+                </div>
+                <div class="article-content">
+                    <h2>{{post.section1Title}}</h2>
+                    <p>{{post.description.content[0].content[0].value}}</p>
+                    <!-- section 1 explained desc -->
+                    <p>{{post.section1Info.content[0].content[0].value}}</p>
+                    <!-- section 2 my thoughts -->
+
+                    <h2>{{post.section2Title}}</h2>
+                    <p>{{post.section2Experience.content[0].content[0].value}}</p>
+                    <!-- section 3 info -->
+
+                    <h2>{{post.section3Title}}</h2>
+                    <p>{{post.section3UseCase.content[0].content[0].value}}</p>
+                    <blockquote>
+                        <p>{{post.blockquote1.content[0].content[0].value}}</p>
+                    </blockquote>
+                    <p><sub>{{post.section4Title}}</sub></p>
+                    <p>{{post.section4Facts.content[0].content[0].value}}</p>
+                    <a href="{{post.section4Facts.content[1].content[1].content[0].value}}">MDN library</a>
+
+                    <!-- <ul *ngIf="post.table !== undefined">
+                        <li *ngFor="let li of post.table.content[0].content[1].content">
+                            {{li.content[0].content[0].data.value}}</li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul> -->
+                </div>
+            </article>
+        </div>
+        <div class="col-md-4 col-lg-4">
+            <aside class="sidebar">
+                <div class="widget">
+                    <h5 class="widget-title">About Me</h5>
+                    <div class="widget-content">
+                        <a href="/about">Hello there! My name is Boyan, and I'm delighted to welcome you to my online
+                            development blog.</a>
+                    </div>
+                </div>
+                <div class="widget">
+                    <h5 class="widget-title">Categories</h5>
+                    <div class="widget-content">
+                        <ul class="list-unstyled">
+                            <li><a href="#">Technology</a></li>
+                            <li><a href="#">Web Development</a></li>
+                            <li><a href="#">Design</a></li>
+                            <li><a href="#">Photography</a></li>
+                            <li><a href="#">Miscellaneous</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="widget">
+                    <h5 class="widget-title">Tags</h5>
+                    <div class="widget-content">
+                        <ul class="list-unstyled tag-cloud">
+                            <li><a href="#">Bootstrap</a></li>
+                            <li><a href="#">HTML</a></li>
+                            <li><a href="#">CSS</a></li>
+                            <li><a href="#">JavaScript</a></li>
+                            <li><a href="#">Web Design</a></li>
+                            <li><a href="#">Development</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
