@@ -23,6 +23,8 @@ import { UserRoutingModule } from './user/user-routing.module';
 import { UserModule } from './user/user.module';
 import { CreateComponent } from './create/create.component';
 import { CreatePageComponent } from './pages/create-page/create-page.component';
+import { AppEmailDirective } from './shared/validators/app-email.directive';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { CreatePageComponent } from './pages/create-page/create-page.component';
     RegisterPageComponent,
     LoginComponent,
     CreateComponent,
-    CreatePageComponent
+    CreatePageComponent,
+    AppEmailDirective,
 
   ],
   imports: [

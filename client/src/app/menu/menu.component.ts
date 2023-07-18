@@ -14,7 +14,7 @@ export class MenuComponent {
   get isLoggedIn(): boolean {
     console.log(this.userService.isLogged);
     
-    return false
+    return this.userService.isLogged
     
   }
 
