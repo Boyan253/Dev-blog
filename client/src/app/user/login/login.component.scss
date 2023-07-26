@@ -54,7 +54,54 @@
 	right: 0;	
 	border-radius: 32px;
 }
+/* Error Box Styles */
+.errorContainer > p {
+  background: rgba(204, 55, 55, 0.726);
+  color: white;
+  padding: 5px 25px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 20px;
+  position: relative;
+  margin-bottom: 5px;
+  overflow: hidden;
+  animation-duration: 1s;
+}
 
+.fade-in {
+	animation-name: fade-in;
+	animation-duration: 1s;
+  }
+  
+  @keyframes fade-in {
+	0% {
+	  opacity: 0;
+	  transform: translateY(-10px);
+	}
+	100% {
+	  opacity: 1;
+	  transform: translateY(0);
+	}
+  }
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+  
+  /* Example Usage */
+  /* 
+  <div class="error-box">
+	<p class="error-text">This is an error message.</p>
+  </div>
+  */
+  
 .screen__background__shape3 {
 	height: 540px;
 	width: 190px;

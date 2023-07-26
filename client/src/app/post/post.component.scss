@@ -5,7 +5,33 @@
     align-items: center;
     padding-left: 19em;
 }
+/* Assuming you have included Font Awesome CSS in your project */
+.like-btn {
+    display: inline-flex;
+    align-items: center;
+ 
+    justify-content: center;
+    margin: 10px;
+    border-radius: 50%;
+    border: none;
+    background-color: #e6e6e6;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
 
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .like-btn:hover {
+    background-color: #ff5050;
+    color: #fff;
+  }
+  
+  .like-btn i {
+    margin-right: 5px;
+  }
+  
 .post-title>a {
     text-decoration: none;
 }

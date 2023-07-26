@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CoreModule } from './core/core.module';
 import { SubscribeComponent } from './subscribe/subscribe.component';
@@ -23,7 +23,7 @@ import { UserRoutingModule } from './user/user-routing.module';
 import { UserModule } from './user/user.module';
 import { CreateComponent } from './create/create.component';
 import { CreatePageComponent } from './pages/create-page/create-page.component';
-import { AppEmailDirective } from './shared/validators/app-email.directive';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -43,7 +43,7 @@ import { AppEmailDirective } from './shared/validators/app-email.directive';
     LoginComponent,
     CreateComponent,
     CreatePageComponent,
-    AppEmailDirective,
+    
 
   ],
   imports: [
@@ -52,7 +52,9 @@ import { AppEmailDirective } from './shared/validators/app-email.directive';
     CoreModule,
     HttpClientModule,
      FormsModule,
-     UserModule
+     UserModule,
+     SharedModule,
+     ReactiveFormsModule
 
 
   ],

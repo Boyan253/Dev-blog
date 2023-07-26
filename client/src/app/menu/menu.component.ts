@@ -12,7 +12,7 @@ export class MenuComponent {
 
   }
   get isLoggedIn(): boolean {
-    console.log(this.userService.isLogged);
+    
     
     return this.userService.isLogged
     

@@ -1,7 +1,10 @@
-import { Component, NgModule } from '@angular/core';
-import { ServiceService } from 'src/app/service.service';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { DEFAULT_EMAIL_DOMAINS } from 'src/app/shared/constants';
+import { appEmailValidator } from 'src/app/shared/validators/app-email.validator';
+import { matchPasswordsValidator } from 'src/app/shared/validators/match-password-validator';
 import { UserService } from '../user.service';
+import { Post } from 'src/types/postInterface';
 
 @Component({
   selector: 'app-register',
@@ -9,59 +12,56 @@ import { UserService } from '../user.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  email: string;
-  password: string;
-  repass: string;
-  firstName: string;
-  lastName: string;
-  gender: string;
-  country: string;
-  agreeTerms: boolean;
-  receiveNewsletter: boolean;
+  registerError: string | null = null; // Declare loginError property
 
-  constructor(private apiService: UserService) {
-    this.email = '';
-    this.password = '';
-    this.repass = '';
-    this.firstName = '';
-    this.lastName = '';
-    this.gender = '';
-    this.country = '';
-    this.agreeTerms = false;
-    this.receiveNewsletter = false;
-  }
+  form = this.fb.group({
 
-  onSubmit(event: Event) {
-    event.preventDefault()
-    // Access the form input values here
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
-    console.log('Re-type Password:', this.repass);
-    console.log('First Name:', this.firstName);
-    console.log('Last Name:', this.lastName);
-    console.log('Gender:', this.gender);
-    console.log('Country:', this.country);
-    console.log('Agree Terms:', this.agreeTerms);
-    console.log('Receive Newsletter:', this.receiveNewsletter);
+    email: ["", [Validators.required, appEmailValidator(DEFAULT_EMAIL_DOMAINS)]],
+    firstName: ["", [Validators.required,]],
+    lastName: ["", [Validators.required,]],
 
-    const body = {
-      email: this.email,
-      password: this.password,
-      repass: this.repass,
-      firstName: this.firstName,
-      lastName: this.lastName
-      // Include other form fields as needed
+    passGroup: this.fb.group(
+      {
+        password: ["", [Validators.required, Validators.minLength(5)]],
+        rePassword: ["", [Validators.required, Validators.minLength(5)]], // This should be named 'rePassword' in the template
+      },
+      {
+        validators: [matchPasswordsValidator("password", "rePassword")],
+      }
+    ),
+  });
+
+
+  constructor(private fb: FormBuilder, private userService: UserService) { }
+
+async  register(): Promise<void> {
+    console.log('here');
+    
+    const postData = {
+      email: this.form.value.email ?? '',
+      firstName: this.form.value.firstName ?? '',
+      lastName: this.form.value.lastName ?? '',
+      passGroup: {
+        password: this.form.value.passGroup?.password ?? '',
+        repass: this.form.value.passGroup?.rePassword ?? '',
+      },
     };
 
+    if (this.form.invalid) {
+      console.log(this.form.value);
 
-    this.apiService.register(body).subscribe(
-      response => {
-        console.log(response);
+      return;
+    }
+    try {
+  await  this.userService.register(postData)
+      
+    } catch (error) {
+      this.registerError = 'Register failed. this Email is already taken.'; // Set the error message
+      // console.error('Login failed:', error);
+      setTimeout(() => {
+        this.registerError = null; // Remove the error message after a timeout
+      }, 5000);
+    }
 
-      },
-      error => {
-        // Handle any errors that occur during the API call
-      }
-    );
   }
 }

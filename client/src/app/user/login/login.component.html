@@ -1,19 +1,23 @@
 <div class="container">
-
+	<div *ngIf="loginError" class="errorContainer fade-in">
+		<p class="error-text">{{ loginError }}</p>
+	  </div>
 	<div class="screen">
+	
 		<div class="screen__content">
 			<form class="login" #form="ngForm" (ngSubmit)="login(form)">
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
-					<input type="text" class="login__input" placeholder="User name / Email" name="email" #InputEmail="ngModel" ngModel required>
+					<input type="text" class="login__input" placeholder="User name / Email" name="email" #inputEmail="ngModel" ngModel required [appEmail]="appEmailDomains">
 				</div>
-				<ng-container *ngIf="InputEmail.touched">
-					<p *ngIf="InputEmail.errors?.['required']">required email</p>
-					<p >Invalid email</p>
+				<ng-container *ngIf="inputEmail.touched">
+					<p *ngIf="inputEmail.errors?.['required']">required email</p>
+					<p *ngIf="inputEmail.errors?.['appEmailValidator']">Invalid email</p>
 				</ng-container>
+				<!-- {{form?.errors | json}} -->
 				<div class="login__field">
 					<i class="login__icon fas fa-lock"></i>
-					<input type="password" class="login__input" placeholder="Password" name="password" #InputPassword="ngModel" ngModel>
+					<input type="password" class="login__input" placeholder="Password" name="password" #inputPassword="ngModel" ngModel>
 				</div>
 				<button type="submit" class="button login__submit">
 					<span class="button__text">Log In Now</span>

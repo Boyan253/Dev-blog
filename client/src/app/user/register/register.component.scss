@@ -2,7 +2,44 @@ $yellow:#f5ba1a;
 $black:#000000;
 $grey:#cccccc;
 $green: #5FCB71;
+.errorContainer > p {
+  background: rgba(204, 55, 55, 0.726);
+  color: white;
+  padding: 5px 25px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 20px;
+  position: relative;
+  margin-bottom: 5px;
+  overflow: hidden;
+  animation-duration: 1s;
+}
 
+.fade-in {
+	animation-name: fade-in;
+	animation-duration: 1s;
+  }
+  
+  @keyframes fade-in {
+	0% {
+	  opacity: 0;
+	  transform: translateY(-10px);
+	}
+	100% {
+	  opacity: 1;
+	  transform: translateY(0);
+	}
+  }
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
 body {
 	font-family: Verdana, Geneva, sans-serif;
 	font-size: 14px;

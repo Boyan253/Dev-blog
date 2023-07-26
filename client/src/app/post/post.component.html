@@ -28,11 +28,18 @@
             <span class="post-author">By Boyan Iliev</span>
 
             <span class="post-comments">{{post.fields.comments.comments.length}} Comments</span>
+            <span class="post-comments">0 Likes</span>
         </div>
         <p class="post-excerpt">
             {{post.fields.description?.content[0].content[0].value}}
         </p>
         <a class="post-read-more" [routerLink]="['/details', post.sys.id]">Read More</a>
+        <button class="like-btn">
+            <i class="fas fa-heart"></i>
+            Like
+          </button>
+          
+
     </div>
 </div>
 <!-- <div class="post">

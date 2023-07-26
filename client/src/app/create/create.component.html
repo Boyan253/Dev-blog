@@ -2,29 +2,24 @@
     <section class="upload-section">
         <div class="wrapper">
             <p class="logoCreate">Create Post</p>
-            <form class="form-area"  encType="multipart/form-data">
+            <form class="form-area"  encType="multipart/form-data" #form="ngForm" (ngSubmit)="create(form)">
                 <div class="input-wrapper">
                     <p>Title</p>
                     <div class="input-ctr">
-                        <input type="text"  placeholder="Enter Title" />
+                        <input type="text"  placeholder="Enter Title" #inputTitle="ngModel" ngModel />
                     </div>
                 </div>
-                <div class="input-wrapper">
-                    <p>Location</p>
-                    <div class="input-ctr">
-                        <input type="text"  placeholder="Enter Location" />
-                    </div>
-                </div>
+             
                 <div class="input-wrapper">
                     <p>Tags</p>
                     <div class="input-ctr">
-                        <input type="text" placeholder="Enter Tags" />
+                        <input type="text" placeholder="Enter Tags"  #inputTags="ngModel" ngModel />
                     </div>
                 </div>
                 <div class="input-wrapper">
                     <p>Image URL</p>
                     <div class="input-ctr">
-                        <input type="file" name='image'  placeholder="Enter Image URL" />
+                        <input type="file" name='image'  placeholder="Enter Image URL"  #inputImage="ngModel" ngModel/>
                     </div>
                 </div>
                 <div class="textarea-wrapper">
@@ -36,7 +31,7 @@
                             cols="30"
                             rows="10"
                             placeholder="Add Description"
-                           
+                            #inputDescription="ngModel" ngModel
                         ></textarea>
                     </div>
                     <button class="button-upload" type='submit'>Upload</button>

@@ -12,39 +12,69 @@ export class UserService {
   user: User | undefined;
 
   get isLogged(): boolean {
-    return !!this.user
+    return !!this.user;
   }
 
   constructor(private httpClient: HttpClient) {
     try {
       const lsUser = localStorage.getItem(USER_KEY) || '';
-      this.user = JSON.parse(lsUser)
+      this.user = JSON.parse(lsUser);
     } catch (error) {
-      this.user = undefined
+      this.user = undefined;
     }
-
-
-
   }
 
-  register(data: Post) {
-    const body = { firstName: data.firstName, email: data.email, password: data.password, repass: data.repass, lastName: data.lastName }
+  async register(data: Post) {
+    console.log('now here');
+
+    const body = { firstName: data.firstName, email: data.email, password: data.passGroup.password, repass: data.passGroup.repass, lastName: data.lastName };
     console.log(body);
-
-    return this.httpClient.post(`http://localhost:3000/register`, body)
-  }
-  login(): void {
-    this.user = {
-      email: "John@abv.bg",
-      password: 'Kitaeca',
-      firstName: "daw",
-      lastName: "wah"
+    try {
+    const response: any = await this.httpClient.post('http://localhost:3000/register', body).toPromise();
+   console.log(response);
+   
+    if (Object.entries(response).length === 0) {
+      console.log('No user');
+      throw new Error('no user');
     }
-    localStorage.setItem(USER_KEY, JSON.stringify(this.user))
-  }
-  logout(): void {
-    this.user = undefined
-    localStorage.removeItem(USER_KEY)
+    this.user  = response
+    localStorage.setItem(USER_KEY, JSON.stringify(this.user));
 
+    } catch (error) {
+      console.error('register failed:', error);
+      throw error;
+    }
+
+
+      
+  
+  }
+
+  async login(email: string, password: string) {
+    const body = { email, password };
+
+    try {
+      const response: any = await this.httpClient.post('http://localhost:3000/login', body).toPromise();
+      // Assuming the response from the API contains user data
+      if (response.status === 404) {
+        return;
+      }
+      if (Object.entries(response).length === 0) {
+        console.log('No user');
+        throw new Error('no user');
+      }
+      this.user = response;
+
+      // Store the user data in local storage
+      localStorage.setItem(USER_KEY, JSON.stringify(this.user));
+    } catch (error) {
+      console.error('Login failed:', error);
+      throw error; // Rethrow the error to the caller
+    }
+  }
+
+  logout(): void {
+    this.user = undefined;
+    localStorage.removeItem(USER_KEY);
   }
 }
