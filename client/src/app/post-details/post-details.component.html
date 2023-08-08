@@ -4,32 +4,36 @@
             <article class="article-post">
                 <div class="article-header">
                     <h1 class="article-title" *ngIf="post.title">{{post.title}}</h1>
-                    <img class="article-img" src={{post.image?.fields.file.url}} alt="">
+                    <img class="article-img" src={{post.image}} alt="">
                     <div class="article-meta">
                         <span class="meta-date"><i class="far fa-clock"></i> May 20, 2023</span>
                         <span class="meta-category " *ngFor="let tag of tags"> <i class="far fa-folder"></i> {{tag?
-                            tag.sys.id : 'No tags'}}</span>
+                            post.tags : 'No tags'}}</span>
                     </div>
                 </div>
+                <a href="" *ngIf="isOwner"> <button class="btn delete-btn">Delete</button></a>
+                <a *ngIf="isOwner" [routerLink]="['/edit', post._id]"> <button class="btn edit-btn">Edit</button></a>
+
+
                 <div class="article-content">
-                    <h2>{{post.section1Title}}</h2>
-                    <p>{{post.description.content[0].content[0].value}}</p>
+                    <!-- <h2>{{post.section1Title}}</h2> -->
+                    <p>{{post.description}}</p>
                     <!-- section 1 explained desc -->
-                    <p>{{post.section1Info.content[0].content[0].value}}</p>
+                    <!-- <p>{{post.section1Info}}</p> -->
                     <!-- section 2 my thoughts -->
 
-                    <h2>{{post.section2Title}}</h2>
-                    <p>{{post.section2Experience.content[0].content[0].value}}</p>
+                    <!-- <h2>{{post.section2Title}}</h2> -->
+                    <!-- <p>{{post.section2Experience}}</p> -->
                     <!-- section 3 info -->
 
-                    <h2>{{post.section3Title}}</h2>
-                    <p>{{post.section3UseCase.content[0].content[0].value}}</p>
+                    <!-- <h2>{{post.section3Title}}</h2> -->
+                    <!-- <p>{{post.section3UseCase}}</p> -->
                     <blockquote>
-                        <p>{{post.blockquote1.content[0].content[0].value}}</p>
+                        <!-- <p>{{post.blockquote1}}</p> -->
                     </blockquote>
-                    <p><sub>{{post.section4Title}}</sub></p>
-                    <p>{{post.section4Facts.content[0].content[0].value}}</p>
-                    <a href="{{post.section4Facts.content[1].content[1].content[0].value}}">MDN library</a>
+                    <!-- <p><sub>{{post.section4Title}}</sub></p> -->
+                    <!-- <p>{{post.section4Facts}}</p> -->
+                    <!-- <a href="{{post.section4Facts.content[1].content[1].content[0].value}}">MDN library</a> -->
 
                     <!-- <ul *ngIf="post.table !== undefined">
                         <li *ngFor="let li of post.table.content[0].content[1].content">

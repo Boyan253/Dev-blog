@@ -2,18 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from 'src/types/postInterface';
 import { User } from 'src/types/user';
+import { BehaviorSubject, Observable, Subscription, mergeMap, tap } from 'rxjs';
 
-const USER_KEY = '[user]';
+const USER_KEY = 'user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   user: User | undefined;
+  user$$: any;
 
   get isLogged(): boolean {
     return !!this.user;
   }
+
+
 
   constructor(private httpClient: HttpClient) {
     try {
@@ -23,22 +27,33 @@ export class UserService {
       this.user = undefined;
     }
   }
+ 
+  isOwner(id: any): boolean {
+    if (id === this.user?.id) {
+      
+      return true
+    } else {
+      
+      
 
-  async register(data: Post) {
+      return false
+    }
+  }
+  async register(data: User) {
     console.log('now here');
 
     const body = { firstName: data.firstName, email: data.email, password: data.passGroup.password, repass: data.passGroup.repass, lastName: data.lastName };
     console.log(body);
     try {
-    const response: any = await this.httpClient.post('http://localhost:3000/register', body).toPromise();
-   console.log(response);
-   
-    if (Object.entries(response).length === 0) {
-      console.log('No user');
-      throw new Error('no user');
-    }
-    this.user  = response
-    localStorage.setItem(USER_KEY, JSON.stringify(this.user));
+      const response: any = await this.httpClient.post('http://localhost:3000/register', body).toPromise();
+      console.log(response);
+
+      if (Object.entries(response).length === 0) {
+        console.log('No user');
+        throw new Error('no user');
+      }
+      this.user = response
+      localStorage.setItem(USER_KEY, JSON.stringify(this.user));
 
     } catch (error) {
       console.error('register failed:', error);
@@ -46,8 +61,8 @@ export class UserService {
     }
 
 
-      
-  
+
+
   }
 
   async login(email: string, password: string) {

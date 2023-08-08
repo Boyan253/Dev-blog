@@ -4,6 +4,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 import { AuthActivate } from '../core/guards/auth.activate';
+import { EditComponent } from '../edit/edit.component';
+import { OwnerActivate } from '../core/guards/owner.activate';
 
 
 const routes: Routes = [
@@ -17,13 +19,12 @@ const routes: Routes = [
         component: RegisterComponent,
         canActivate: [AuthActivate]
 
-     }, {
-        path: 'profile',
-        component: LoginComponent,
-        // canActivate: [AuthActivate]
-
-    },
-
+    }, 
+    {
+        path: 'edit/:id',
+        component: EditComponent,
+        canActivate: [OwnerActivate]
+    }
 
 ];
 

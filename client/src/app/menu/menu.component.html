@@ -11,7 +11,7 @@
                 <li *ngIf="isLoggedIn"><a (click)="logout()">Logout</a></li>
 
                 <li *ngIf="isLoggedIn"><a href="/create">Create</a></li>
-                <li *ngIf="isLoggedIn"><a href="">My Profile</a></li>
+                <li *ngIf="isLoggedIn"><a [routerLink]="['/profile', userId]">My Profile</a></li>
                 <!-- <li><a href=""></a></li> -->
             </nav>
             <!-- <button class="sub-btn" (click)="subNotification()">Subscribe</button> -->

@@ -1,4 +1,39 @@
-/* Container styles */
+/* Contain
+er styles */
+
+/* Common styles for both buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  /* Delete button style */
+  .delete-btn {
+    background-color: #ff3b30; /* Red color */
+  }
+  
+  /* Edit button style */
+  .edit-btn {
+    background-color: #007aff; /* Blue color */
+  }
+  
+  /* Add any other styles like hover or active states if needed */
+  .delete-btn:hover,
+  .edit-btn:hover {
+    opacity: 0.8;
+  }
+  
+  .delete-btn:active,
+  .edit-btn:active {
+    transform: translateY(1px);
+  }
+  
+
 .container {
     max-width: 1000px;
     /* Adjusted to 600px */

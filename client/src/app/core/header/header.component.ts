@@ -1,7 +1,8 @@
 import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { trigger, state, style, animate, transition, group } from '@angular/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ServiceService } from 'src/app/service.service';
 
 @Component({
   selector: 'app-header',
@@ -58,7 +59,8 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
   isShowed = true;
   isGreen = false;
-
+  posts: any[] = [];
+  userId: string | null = null;
   @ViewChild('header') headerElement?: ElementRef;
   @ViewChild('h1') h1Element?: ElementRef;
   @ViewChild('img') imgElement?: ElementRef;
@@ -68,7 +70,9 @@ export class HeaderComponent {
   @ViewChild('socials') socialsElement?: ElementRef;
   @ViewChild('nav') navElement?: ElementRef;
 
-  constructor(private router: Router) { }
+  constructor(private apiService: ServiceService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
@@ -122,6 +126,28 @@ export class HeaderComponent {
       // this.headerElement!.nativeElement.style.height = 'auto'
     }, 750)
   }
+  ngOnInit(): void {
+
+    let id = localStorage['user']
+    if (id) {
+      let parsedId = JSON.parse(id);
+      this.userId = parsedId.id
+    // Use .get() to retrieve the parameter value
+    console.log(this.userId);
+
+    this.apiService.loadProfile(this.userId).subscribe(
+      (value: any) => {
+        this.posts = value;
+        console.log(this.posts);
+
+        console.log(this.posts);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );}
+
+  }
   // goToLastPostDetails() {
   //   const lastPostDetailsString = localStorage.getItem('lastPostDetails');
   //   if (lastPostDetailsString) {
@@ -131,13 +157,13 @@ export class HeaderComponent {
   //       return lastPostDetails; // Return lastPostDetails object
   //     }
   //   }
-  
+
   //   // Redirect to the latest post if no last post details or invalid post id found
   //   this.router.navigate(['/latest-post']);
   //   return undefined; // Return null if no valid lastPostDetails
   // }
-  
-  
+
+
 
 
 }

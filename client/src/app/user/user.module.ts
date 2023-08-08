@@ -5,12 +5,15 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { AppEmailDirective } from '../shared/validators/app-email.directive';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ProfileComponent
+  ],
   imports: [
     CommonModule,
     UserRoutingModule,
@@ -20,7 +23,7 @@ import { AppEmailDirective } from '../shared/validators/app-email.directive';
     ReactiveFormsModule
   ],
   exports: [
-    
+    ProfileComponent
   ]
 })
 export class UserModule { }

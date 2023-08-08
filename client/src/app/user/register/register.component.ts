@@ -34,10 +34,11 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder, private userService: UserService) { }
 
-async  register(): Promise<void> {
+  async register(): Promise<void> {
     console.log('here');
-    
+
     const postData = {
+      id: '',
       email: this.form.value.email ?? '',
       firstName: this.form.value.firstName ?? '',
       lastName: this.form.value.lastName ?? '',
@@ -45,6 +46,7 @@ async  register(): Promise<void> {
         password: this.form.value.passGroup?.password ?? '',
         repass: this.form.value.passGroup?.rePassword ?? '',
       },
+
     };
 
     if (this.form.invalid) {
@@ -53,8 +55,8 @@ async  register(): Promise<void> {
       return;
     }
     try {
-  await  this.userService.register(postData)
-      
+      await this.userService.register(postData)
+
     } catch (error) {
       this.registerError = 'Register failed. this Email is already taken.'; // Set the error message
       // console.error('Login failed:', error);

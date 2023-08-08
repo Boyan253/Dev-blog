@@ -14,26 +14,26 @@
 </article> --><!-- Single Post -->
 <div class="post" *ngFor="let post of posts">
     <div class="post-thumbnail">
-        <a [routerLink]="['/details', post.sys.id]">
-            <img src={{post.fields.thumbnail?.fields.file.url}} alt="Post Image">
+        <a [routerLink]="['/details', post._id]">
+            <img src={{post.image}} alt="Post Image">
         </a>
     </div>
     <div class="post-content">
         <h2 class="post-title">
-            <a [routerLink]="['/details', post.sys.id]">{{post.fields.title}}</a>
+            <a [routerLink]="['/details', post._id]">{{post.title}}</a>
         </h2>
         <div class="post-meta">
-            <span class="post-date">{{post.fields.date}}</span>
+            <span class="post-date">{{post.date}}</span>
 
-            <span class="post-author">By Boyan Iliev</span>
+            <span class="post-author">By {{post.ownerEmail}}</span>
 
-            <span class="post-comments">{{post.fields.comments.comments.length}} Comments</span>
+            <!-- <span class="post-comments">{{post.fields.comments.comments.length}} Comments</span> -->
             <span class="post-comments">0 Likes</span>
         </div>
         <p class="post-excerpt">
-            {{post.fields.description?.content[0].content[0].value}}
+            {{post.description}}
         </p>
-        <a class="post-read-more" [routerLink]="['/details', post.sys.id]">Read More</a>
+        <a class="post-read-more" [routerLink]="['/details', post._id]">Read More</a>
         <button class="like-btn">
             <i class="fas fa-heart"></i>
             Like

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../user/user.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -8,18 +8,24 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent {
-  constructor(private userService: UserService, private router: Router) {
+  userId: string | null = null; // Initialize userId as null
 
+  constructor(private userService: UserService, private router: Router) {
+    // Retrieve userId from local storage during component initialization
+    let id =  localStorage['user']
+    if (id) {
+      let parsedId = JSON.parse(id);
+      this.userId = parsedId.id
+    }
+  
   }
+
   get isLoggedIn(): boolean {
-    
-    
-    return this.userService.isLogged
-    
+    return this.userService.isLogged;
   }
 
   logout(): void {
     this.userService.logout();
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
   }
 }

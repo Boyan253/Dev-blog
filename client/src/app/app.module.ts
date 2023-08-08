@@ -24,6 +24,8 @@ import { UserModule } from './user/user.module';
 import { CreateComponent } from './create/create.component';
 import { CreatePageComponent } from './pages/create-page/create-page.component';
 import { SharedModule } from './shared/shared.module';
+import { EditComponent } from './edit/edit.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 
 @NgModule({
@@ -43,6 +45,8 @@ import { SharedModule } from './shared/shared.module';
     LoginComponent,
     CreateComponent,
     CreatePageComponent,
+    EditComponent,
+    ProfilePageComponent,
     
 
   ],
