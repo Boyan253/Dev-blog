@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 
 
 router.post('/register', async (req, res) => {
-console.log('in the framework');
+    console.log('in the framework');
     //TODO check form action, method, field names
     try {
         console.log(req.body);
@@ -23,14 +23,14 @@ console.log('in the framework');
         const user = await register(req.body.email, req.body.password, req.body.firstName, req.body.lastName)
 
         const token = jwt.sign({ userId: user.id, email: user.email }, 'your-secret-key', { expiresIn: '1h' });
-        res.json({ token });
+        res.json({ token, email: user.email, firstName: user.firstName, id: user.id });
 
-      
+
     } catch (err) {
         console.error(err)
 
         //TODO send error messages
-        
+
         res.json(err)
 
     }
@@ -48,7 +48,7 @@ router.post('/login', isGuest(), async (req, res) => {
 
         // Send the JWT token as a response
         console.log('success');
-        res.json({ token });
+        res.json({ token, email: user.email, firstName: user.firstName, id: user.id });
     } catch (error) {
         //TODO send error messages
 
