@@ -1,6 +1,11 @@
 export interface User {
+    id: string,
+    email: string,
     firstName: string,
     lastName: string,
-    email: string,
-    password: string
+    passGroup: {
+        password: string,
+        repass: string,
+    }
+
 }

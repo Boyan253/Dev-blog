@@ -1,10 +1,7 @@
 export interface Post {
-    email: string,
-    firstName: string,
-    lastName: string,
-    passGroup: {
-        password: string,
-        repass: string,
-    }
+    title: string,
+    image: string,
+    tags: string,
+    description: string
 
 }
