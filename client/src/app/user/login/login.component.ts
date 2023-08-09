@@ -13,20 +13,24 @@ export class LoginComponent {
   appEmailDomains = DEFAULT_EMAIL_DOMAINS;
   loginError: string | null = null; // Declare loginError property
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router) { }
 
   async login(form: NgForm): Promise<void> {
     this.loginError = null; // Reset any previous login errors
     if (form.invalid) {
-     this.loginError = 'Form is not filled'
-     return
+      this.loginError = 'Form is not filled'
+      return
     }
 
     const { email, password } = form.value;
     try {
       await this.userService.login(email, password);
-      
+
       this.router.navigate(['/']);
+      setTimeout(() => {
+
+        window.location.reload()
+      }, 1000);
     } catch (error) {
       // Handle the login error here (e.g., show an error message)
       this.loginError = 'Login failed. Please check your credentials.'; // Set the error message

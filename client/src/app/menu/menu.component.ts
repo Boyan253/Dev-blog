@@ -12,12 +12,12 @@ export class MenuComponent {
 
   constructor(private userService: UserService, private router: Router) {
     // Retrieve userId from local storage during component initialization
-    let id =  localStorage['user']
+    let id = localStorage['user']
     if (id) {
       let parsedId = JSON.parse(id);
       this.userId = parsedId.id
     }
-  
+
   }
 
   get isLoggedIn(): boolean {
@@ -27,5 +27,6 @@ export class MenuComponent {
   logout(): void {
     this.userService.logout();
     this.router.navigate(['/']);
+    window.location.reload()
   }
 }

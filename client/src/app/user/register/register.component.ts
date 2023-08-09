@@ -5,6 +5,7 @@ import { appEmailValidator } from 'src/app/shared/validators/app-email.validator
 import { matchPasswordsValidator } from 'src/app/shared/validators/match-password-validator';
 import { UserService } from '../user.service';
 import { Post } from 'src/types/postInterface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -32,7 +33,7 @@ export class RegisterComponent {
   });
 
 
-  constructor(private fb: FormBuilder, private userService: UserService) { }
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
 
   async register(): Promise<void> {
     console.log('here');
@@ -51,11 +52,13 @@ export class RegisterComponent {
 
     if (this.form.invalid) {
       console.log(this.form.value);
-
-      return;
+      this.registerError = 'Form is invalid!'
+      return
     }
     try {
       await this.userService.register(postData)
+      this.router.navigate(['/']);
+      window.location.reload()
 
     } catch (error) {
       this.registerError = 'Register failed. this Email is already taken.'; // Set the error message

@@ -7,8 +7,8 @@
             <div class="logo" #logo>
                 <br>
                 <h1 #h1 [style.visibility]="isShowed ? 'visible' : 'visible'" [style.opacity]="isShowed ? '1' : '1'">
-                    {{post.reworkedUser?.email ? post.reworkedUser.email : "Boqns blog"}}</h1>
-                <img #img src="https://avatars.githubusercontent.com/u/97385003?v=4" alt="none">
+                    {{post.reworkedUser?.email ? post.reworkedUser.firstName : "Boqns blog"}}</h1>
+                <img #img src={{post.reworkedUser.profilePicture}} alt="none" />
             </div>
             <br>
             <div class="biography" #bio>{{ post.reworkedUser ? post.reworkedUser.bio : "I'm Boyan Iliev, a web
