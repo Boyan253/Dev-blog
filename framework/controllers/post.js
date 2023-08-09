@@ -94,7 +94,7 @@ router.get('/users/:userId', async (req, res) => {
     console.log(currentUser);
     // profilePicture: currentUser.profilePicture
     const reworkedUser = {
-        id: currentUser._id, email: currentUser.email, firstName: currentUser.firstName,
+        id: currentUser._id, email: currentUser.email, firstName: currentUser.firstName, bio: currentUser.bio, profilePicture: currentUser.profilePicture
     }
     console.log(reworkedUser);
 
