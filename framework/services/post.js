@@ -16,8 +16,10 @@ async function updatePost(id, post) {
 
     existing.title = post.title
 
-
+if (post.imageUrl != 'data:image/png;base64,') {
+    console.log(post.imageUrl);
     existing.image = post.imageUrl
+}
 
 
     existing.tags = post.tags
@@ -26,7 +28,9 @@ async function updatePost(id, post) {
     await existing.save()
     return existing
 }
-
+async function deletePost(postId) {
+    return Post.findByIdAndDelete(postId)
+}
 module.exports = {
-    create, getAllPosts, updatePost
+    create, getAllPosts, updatePost,deletePost
 }
