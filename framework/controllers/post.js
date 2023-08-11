@@ -101,6 +101,17 @@ router.get('/users/:userId', async (req, res) => {
     res.json([{ reworkedUser }])
 
 })
+router.delete('/delete/:id', async (req, res) => {
+   console.log('delete')
+    const post = req.params.id
+    try {
+        const deletedPost = await postService.deletePost(post)
+        res.json({ deletedPost })
+    } catch (err) {
+        console.log(err);
+    }
+
+})
 router.put('/edit/:postId', async (req, res) => {
 
     // const token = req.headers.authorization;
