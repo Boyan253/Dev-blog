@@ -1,0 +1,41 @@
+<div class='body'>
+    <section class="upload-section">
+        <div class="wrapper">
+            <div *ngIf="createError" class="errorContainer fade-in">
+                <p class="error-text">{{ createError }}</p>
+            </div>
+            <p class="logoCreate">Create Post</p>
+            <form [formGroup]="form" class="form-area" encType="multipart/form-data"  (ngSubmit)="create()">
+                <div class="input-wrapper">
+                    <p>Title</p>
+                    <div class="input-ctr">
+                        <input type="text" formControlName="title" placeholder="Enter Title" name="title" 
+                            ngModel />
+                    </div>
+                </div>
+
+                <div class="input-wrapper">
+                    <p>Tags</p>
+                    <div class="input-ctr">
+                        <input type="text" formControlName="tags" placeholder="Enter Tags" name="tags" ngModel />
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <p>Image URL</p>
+                    <div class="input-ctr">
+                        <input type="file" name='image' formControlName="image" placeholder="Enter Image URL" (change)="onFileSelected($event)"
+                            ngModel />
+                    </div>
+                </div>
+                <div class="textarea-wrapper">
+                    <p>Description</p>
+                    <div class="textarea-ctr">
+                        <textarea name="description" id="" cols="30" rows="10" placeholder="Add Description"
+                             formControlName="description" ngModel></textarea>
+                    </div>
+                    <button class="button-upload" type='submit'>Upload</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
