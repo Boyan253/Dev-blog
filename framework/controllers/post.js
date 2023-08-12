@@ -30,6 +30,7 @@ router.post('/create', (req, res) => {
     data.image = `data:image/png;base64,${req.body.data.image}`
     try {
         postService.create(data)
+        res.json(data)
     } catch (error) {
 
     }
