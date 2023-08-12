@@ -30,6 +30,7 @@ export class UserService {
  
   isOwner(id: any): boolean {
     if (id === this.user?.id) {
+      console.log(id, this.user?.id);
       
       return true
     } else {

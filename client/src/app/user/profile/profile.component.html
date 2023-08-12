@@ -12,6 +12,9 @@
         consequatur?</p>
     <a href="">Read More...</a>
 </article> --><!-- Single Post -->
+<div class="no-posts-message" *ngIf="posts.length == 0">
+    No posts available.
+</div>
 <div class="post" *ngFor="let post of posts">
     <div class="post-thumbnail">
         <a [routerLink]="['/details', post._id]">

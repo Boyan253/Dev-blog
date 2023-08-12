@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, NgForm } from '@angular/forms';
+import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { ServiceService } from '../service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-edit',
@@ -9,21 +10,28 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent {
-  postData = {
-    title: '',
-    image: '',
-    tags: '',
-    description: '',
-  };
+  createError: string | null = null; // Declare loginError property
+
+
+  form = this.fb.group({
+
+    title: ["", [Validators.required,]],
+    image: ["", [Validators.required,]],
+    tags: ["", [Validators.required,]],
+    description: ["", [Validators.required,]],
+
+
+  });
 
   post: any; // Declare post variable
   postId: any; // Declare postId variable
 
   constructor(
     private fb: FormBuilder,
-   
+    private userService: UserService,
     private apiService: ServiceService, // Make sure you have ApiService imported and injected
     private router: ActivatedRoute
+    , private routerr: Router
   ) {
     this.router.params.subscribe(params => {
       this.postId = params['id']; // Convert to a number if it's a string
@@ -31,29 +39,48 @@ export class EditComponent {
       // Fetch post details using apiService
       this.apiService.getPostDetails(this.postId).subscribe((res) => {
         this.post = res.singularPost;
-         this.postData.title = this.post.title;
-        this.postData.tags = this.post.tags;
-        this.postData.description = this.post.description;
-        // Assuming this.post.image is the URL of the image
-        // You can handle the image differently, like preloading it and displaying it in the template
-        this.postData.image = this.post.image;
+        this.form.patchValue({
+          title: this.post.title,
+          tags: this.post.tags,
+          description: this.post.description,
+
+          // image: this.post.image
+          // You can handle the image URL differently
+          // if you don't want to populate it here
+        });
       });
+
     });
   }
 
-  async edit(form: NgForm): Promise<void> {
-    if (form.invalid) {
-      throw Error('form is invalid');
+  async edit(): Promise<void> {
+    if (this.form.value.description == '' || this.form.value.tags == '' || this.form.value.title == '') {
+      this.createError = 'Form is invalid!'
+      console.log(this.form.value);
+
+      return
     }
 
     try {
-      const base64Data = this.postData.image.split(",")[1];
-      const binaryData = atob(base64Data);
-      this.postData.image = btoa(binaryData);
+      const postData = {
+        title: this.form.value.title || '',
+        image: this.form.value!.image || '',
+        tags: this.form.value!.tags || '',
+        description: this.form.value.description || '',
 
-      this.apiService.updatePost(this.postId, this.postData).subscribe(
+      };
+      if (this.form.value.image != '') {
+        const base64Data = postData.image.split(",")[1];
+        const binaryData = atob(base64Data);
+        postData.image = btoa(binaryData);
+      }
+
+
+      this.apiService.updatePost(this.postId, postData).subscribe(
         response => {
           console.log('Post updated successfully!', response);
+          this.routerr.navigate(['/']);
+
         },
         error => {
           console.log('Error updating post:', error);
@@ -69,7 +96,7 @@ export class EditComponent {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.postData.image = e.target.result; // This should be a valid data URL
+        this.form.value.image = e.target.result; // This should be a valid data URL
       };
       reader.readAsDataURL(file);
     }

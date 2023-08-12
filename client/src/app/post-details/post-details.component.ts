@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService } from '../service.service';
 import * as contentful from 'contentful';
 import { UserService } from '../user/user.service';
@@ -14,24 +14,27 @@ export class PostDetailsComponent implements OnInit {
   postId: any;
   post: any;
   tags: any[] = [];
-  constructor(private route: ActivatedRoute, private apiService: ServiceService, private userService: UserService) { }
+
+  constructor(private route: ActivatedRoute, private apiService: ServiceService, private userService: UserService, private routerr: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.postId = params['id'];
-      
+
       this.apiService.getPostDetails(this.postId).subscribe((res) => {
-       
+
         // this.userService.isOwner(this.postId)
-     
+
 
         this.post = res.singularPost
       })
     });
   }
   get isOwner() {
-   
+console.log(this.post.ownerId);
 
+
+console.log( this.userService.isOwner(this.post.ownerId));
 
     return this.userService.isOwner(this.post.ownerId)
 
@@ -41,4 +44,24 @@ export class PostDetailsComponent implements OnInit {
     return this.userService.isLogged
 
   }
+  delete() {
+    try {
+      this.apiService.deletePost(this.postId).subscribe(
+        response => {
+          console.log('Delete successful:', response);
+
+          this.routerr.navigate(['/']);
+
+        },
+        error => {
+          console.log('Error deleting post:', error);
+        }
+      );
+
+    } catch (error) {
+
+    }
+
+  }
+
 }

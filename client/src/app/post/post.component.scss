@@ -6,6 +6,11 @@
     padding-left: 19em;
 }
 /* Assuming you have included Font Awesome CSS in your project */
+.no-posts-message{
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; 
+}
 .like-btn {
     display: inline-flex;
     align-items: center;

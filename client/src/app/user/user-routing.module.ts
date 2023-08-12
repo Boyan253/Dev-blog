@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { AuthActivate } from '../core/guards/auth.activate';
 import { EditComponent } from '../edit/edit.component';
 import { OwnerActivate } from '../core/guards/owner.activate';
+import { NoPageComponent } from '../no-page/no-page.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
         path: 'edit/:id',
         component: EditComponent,
         canActivate: [OwnerActivate]
-    }
+    },
+    { path: '**', component: NoPageComponent }
 
 ];
 

@@ -11,7 +11,7 @@
                             post.tags : 'No tags'}}</span>
                     </div>
                 </div>
-                <a href="" *ngIf="isOwner"> <button class="btn delete-btn">Delete</button></a>
+                <button *ngIf="isOwner" (click)="delete()" class="btn delete-btn">Delete</button>
                 <a *ngIf="isOwner" [routerLink]="['/edit', post._id]"> <button class="btn edit-btn">Edit</button></a>
 
 

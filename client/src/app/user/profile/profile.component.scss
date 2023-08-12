@@ -77,7 +77,11 @@
     // margin-bottom: 30px;
     color: #6c757d;
 }
-
+.no-posts-message{
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; 
+}
 .post .post-read-more {
     display: inline-block;
     padding: 12px 25px;
