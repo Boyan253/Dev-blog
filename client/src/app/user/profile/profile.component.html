@@ -1,0 +1,94 @@
+<!-- <article class="item">
+    <img src="" alt="no">
+    <h2>
+        Top 3 JavaScript Frameworks</h2>
+    <div class="undertags">
+        <span>12:30</span>
+        <span>read for 8 mins</span>
+        <span> 9 comments</span>
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam consequuntur ad eligendi delectus libero. Tempora
+        iste corporis eligendi facilis nostrum ipsum odio, dolorum reiciendis omnis neque excepturi, debitis accusamus
+        consequatur?</p>
+    <a href="">Read More...</a>
+</article> --><!-- Single Post -->
+<div class="no-posts-message" *ngIf="posts.length == 0">
+    No posts available.
+</div>
+<div class="post" *ngFor="let post of posts">
+    <div class="post-thumbnail">
+        <a [routerLink]="['/details', post._id]">
+            <img src={{post.image}} alt="Post Image">
+        </a>
+    </div>
+    <div class="post-content">
+        <h2 class="post-title">
+            <a [routerLink]="['/details', post._id]">{{post.title}}</a>
+        </h2>
+        <div class="post-meta">
+            <span class="post-date">{{post.date}}</span>
+
+            <span class="post-author">By {{post.ownerEmail}}</span>
+
+            <!-- <span class="post-comments">{{post.fields.comments.comments.length}} Comments</span> -->
+            <span class="post-comments">0 Likes</span>
+        </div>
+        <p class="post-excerpt">
+            {{post.description}}
+        </p>
+        <a class="post-read-more" [routerLink]="['/details', post._id]">Read More</a>
+        <button class="like-btn">
+            <i class="fas fa-heart"></i>
+            Like
+          </button>
+          
+
+    </div>
+</div>
+<!-- <div class="post">
+    <div class="post-thumbnail">
+        <a href="post.html">
+            <img src="https://th.bing.com/th/id/OIP.o1Vb4jMGdx9q4wBVFGPxqwAAAA?pid=ImgDet&w=208&h=208&c=7"
+                alt="Post Image">
+        </a>
+    </div>
+    <div class="post-content">
+        <h2 class="post-title">
+            <a href="post.html">Title of the Post</a>
+        </h2>
+        <div class="post-meta">
+            <span class="post-date">May 19, 2023</span>
+            <span class="post-author">By Boyan Iliev</span>
+            <span class="post-comments">3 Comments</span>
+        </div>
+        <p class="post-excerpt">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, fugiat qui. Sed magnam possimus aliquam,
+            dolorum fugiat in aliquid pariatur eaque, ipsum fugit officia? Ab inventore facilis eveniet tempora quia.
+        </p>
+        <a class="post-read-more" href="post.html">Read More</a>
+    </div>
+</div>
+<div class="post">
+    <div class="post-thumbnail">
+        <a href="post.html">
+            <img src="https://th.bing.com/th/id/OIP.o1Vb4jMGdx9q4wBVFGPxqwAAAA?pid=ImgDet&w=208&h=208&c=7"
+                alt="Post Image">
+        </a>
+    </div>
+    <div class="post-content">
+        <h2 class="post-title">
+            <a href="post.html">Title of the Post</a>
+        </h2>
+        <div class="post-meta">
+            <span class="post-date">May 19, 2023</span>
+            <span class="post-author">By Boyan Iliev</span>
+            <span class="post-comments">3 Comments</span>
+        </div>
+        <p class="post-excerpt">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, fugiat qui. Sed magnam possimus aliquam,
+            dolorum fugiat in aliquid pariatur eaque, ipsum fugit officia? Ab inventore facilis eveniet tempora quia.
+        </p>
+        <a class="post-read-more" href="post.html">Read More</a>
+    </div>
+</div> -->
+<!-- End Single Post -->
