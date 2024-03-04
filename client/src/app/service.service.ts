@@ -18,7 +18,7 @@ export class ServiceService {
   }
 
   createPost(data: Post) {
-    console.log(this.httpClient.post(`${this.HTTP_URL}/create`, { data }));
+    // console.log(this.httpClient.post(`${this.HTTP_URL}/create`, { data }));
 
     return this.httpClient.post(`${this.HTTP_URL}/create`, { data })
 

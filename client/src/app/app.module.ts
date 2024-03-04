@@ -27,6 +27,7 @@ import { SharedModule } from './shared/shared.module';
 import { EditComponent } from './edit/edit.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { NoPageComponent } from './no-page/no-page.component';
+import { ThemeMenuComponent } from './app/theme-menu/theme-menu.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { NoPageComponent } from './no-page/no-page.component';
     EditComponent,
     ProfilePageComponent,
     NoPageComponent,
+    ThemeMenuComponent,
     
 
   ],
