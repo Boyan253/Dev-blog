@@ -22,7 +22,6 @@
   padding-left: 12em;
   margin: 0;
 }
-
 .sub-btn {
   margin-top: 10px;
   display: inline-block;
@@ -110,4 +109,47 @@
     padding-left: 0;
     margin: 0;
   }
+}
+// .menu-section {
+//   position: relative;
+// }
+
+.option-btn {
+  position: absolute; /* Position options button absolutely */
+  top: 10px; /* Adjust top position as needed */
+  right: 10px; /* Adjust right position as needed */
+  z-index: 2; /* Ensure button is above other content */
+}
+
+.options-menu {
+  position: fixed; /* Position menu fixed to ensure it's always visible */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Center the menu */
+  background-color: #fff; /* Menu background color */
+  border: 1px solid #ccc; /* Menu border */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Menu box shadow */
+  padding: 10px; /* Menu padding */
+  border-radius: 5px; /* Menu border radius */
+  display: none; /* Initially hide the menu */
+  z-index: 3; /* Ensure menu is above other content */
+}
+
+.options-menu.show-menu {
+  display: block; /* Display the menu when showOptions is true */
+}
+
+.options-menu ul {
+  list-style-type: none; /* Remove default list styles */
+  padding: 0; /* Remove default list padding */
+  margin: 0; /* Remove default list margin */
+}
+
+.options-menu ul li {
+  cursor: pointer; /* Change cursor to pointer on hover */
+  padding: 5px 0; /* Add padding between list items */
+}
+
+.options-menu ul li:hover {
+  background-color: #f0f0f0; /* Change background color on hover */
 }

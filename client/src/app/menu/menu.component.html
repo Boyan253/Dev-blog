@@ -1,20 +1,34 @@
 <section class="menu-section">
+    <button class="option-btn" (click)="toggleOptions()">
+        <i class="fas fa-cog"></i> <!-- Font Awesome icon for options -->
+    </button>
+    
+    <div class="options-menu" [class.show-menu]="showOptions">
+        <ul>
+            <li (click)="toggleThemeSubMenu()">
+                <i class="fas fa-paint-brush"></i> <!-- Icon for theme -->
+                <span>Theme</span>
+                <ul class="submenu" *ngIf="showThemeSubMenu">
+                    <li (click)="toggleTheme('light')">Light Theme</li>
+                    <li (click)="toggleTheme('dark')">Dark Theme</li>
+                </ul>
+            </li>
+            <!-- Add more options as needed -->
+        </ul>
+    </div>
+    
     <div>
         <h2>DevBlog - A Blog Template Made For Developers</h2>
         <p>Welcome to my blog. Subscribe and get my latest blog post in your inbox.</p>
         <div class="content">
             <nav class="navbar">
                 <li><a href="/">Home</a></li>
-
                 <li *ngIf="!isLoggedIn"><a href="/login">Login</a></li>
                 <li *ngIf="!isLoggedIn"><a href="/register">Register</a></li>
                 <li *ngIf="isLoggedIn"><a (click)="logout()">Logout</a></li>
-
                 <li *ngIf="isLoggedIn"><a href="/create">Create</a></li>
                 <li *ngIf="isLoggedIn"><a [routerLink]="['/profile', userId]">My Profile</a></li>
-                <!-- <li><a href=""></a></li> -->
             </nav>
-            <!-- <button class="sub-btn" (click)="subNotification()">Subscribe</button> -->
         </div>
     </div>
 </section>

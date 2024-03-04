@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService } from '../service.service';
-import * as contentful from 'contentful';
 import { UserService } from '../user/user.service';
 
 @Component({
@@ -10,58 +9,77 @@ import { UserService } from '../user/user.service';
   styleUrls: ['./post-details.component.scss']
 })
 export class PostDetailsComponent implements OnInit {
-
   postId: any;
   post: any;
   tags: any[] = [];
+  editMode: boolean = false;
+  editedDescription: string = '';
 
-  constructor(private route: ActivatedRoute, private apiService: ServiceService, private userService: UserService, private routerr: Router) { }
+  constructor(private route: ActivatedRoute, private apiService: ServiceService, private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.postId = params['id'];
 
       this.apiService.getPostDetails(this.postId).subscribe((res) => {
-
-        // this.userService.isOwner(this.postId)
-
-
-        this.post = res.singularPost
-      })
+        this.post = res.singularPost;
+      });
     });
   }
-  get isOwner() {
-console.log(this.post.ownerId);
 
-
-console.log( this.userService.isOwner(this.post.ownerId));
-
-    return this.userService.isOwner(this.post.ownerId)
-
-  } get isLoggedIn(): boolean {
-
-
-    return this.userService.isLogged
-
+  get isOwner(): boolean {
+    return this.userService.isOwner(this.post.ownerId);
   }
-  delete() {
+
+  get isLoggedIn(): boolean {
+    return this.userService.isLogged;
+  }
+  onDescriptionInput(event: any): void {
+    console.log('Description Input:', event.target.value);
+    this.editedDescription = event.target.value;
+}
+
+
+
+
+  toggleEditMode(): void {
+    // this.editedDescription = this.post.description;
+    this.editMode = !this.editMode;
+  }
+
+  saveChanges(): void {
+    // Update the description in the post object
+    this.post.description = this.editedDescription;
+    console.log(this.editedDescription);
+    
+console.log(this.post.description);
+
+    // Call your service method to save changes
+    this.apiService.updatePost(this.postId, this.post).subscribe(
+      response => {
+        console.log('Update successful:', response);
+        this.editMode = false; // Disable edit mode
+      },
+      error => {
+        console.log('Error updating post:', error);
+      }
+    );
+}
+
+
+  delete(): void {
     try {
       this.apiService.deletePost(this.postId).subscribe(
         response => {
           console.log('Delete successful:', response);
-
-          this.routerr.navigate(['/']);
-
+          this.router.navigate(['/']);
         },
         error => {
           console.log('Error deleting post:', error);
         }
       );
-
     } catch (error) {
-
+      console.error('An error occurred:', error);
     }
-
   }
-
 }
